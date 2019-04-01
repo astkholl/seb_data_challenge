@@ -79,7 +79,7 @@ def get_customer_info(customers,transactions,districts):
 	
 	#calculate customers' average end of month balance
 
-	end_balance = transactions2.groupby(['ACCOUNT_ID','YEARMONTH'],as_index=False)['BALANCE'].last()
+	end_balance = transactions.groupby(['ACCOUNT_ID','YEARMONTH'],as_index=False)['BALANCE'].last()
 	monthly_end = end_balance.groupby('ACCOUNT_ID')['BALANCE'].mean()
 	
 	customers['MONTHLY_END_BALANCE'] = monthly_end
