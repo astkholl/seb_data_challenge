@@ -68,6 +68,17 @@ plt.ylabel('Average monthly spending')
 plt.xlabel('Current age')
 plt.savefig('age_spending.png',bbox_inches='tight')
 
+## withdrawal in cash vs age
+
+operations = transactions.groupby(['AGE','OPERATION'],as_index=False).count()
+with_cash = operations[operations['OPERATION'] == 'WITHDRAWAL_IN_CASH']
+
+plt.figure()
+plt.scatter(with_cash['AGE'],with_cash['ACCOUNT_ID'])
+plt.xlabel('Age')
+plt.ylabel('Number of withdrawals by cash')
+plt.savefig('with_by_age.png',bbox_inches='tight')
+
 #calculate the average monthly spend (withdrawal) over all customers
 
 transactions['DISTRICT_ID'] = transactions['ACCOUNT_ID'].map(customers['DISTRICT_ID'])
