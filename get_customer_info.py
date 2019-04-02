@@ -93,6 +93,11 @@ def get_customer_info(customers,transactions,districts):
 
 	customers['YEARLY_CREDIT'] = yearly_mean
 	
+	now = pd.Timestamp(datetime.now())
+	customers['BIRTH_DT'] = pd.to_datetime(customers['BIRTH_DT'], format='%Y%m%d') 
+	customers['AGE'] = (now - customers['BIRTH_DT']).astype('<m8[Y]')
+	
+	
 	return customers,transactions,districts
 
 
